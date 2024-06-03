@@ -1,12 +1,26 @@
-const handleUserShignInPage = (req, res) => {
-    return res.render("sighin");
+const userModel = require("../models/user_model")
+
+const handleUserLogInPage = (req, res) => {
+    return res.render("login");
 }
 
-const handleUserShignUpPage = (req, res) => {
-    return res.render("sighup");
+const handleUserSignUpPage = (req, res) => {
+    return res.render("signup");
+}
+
+const handleUserSignUp = async (req, res) => {
+    const { fullName, email, password } = req.body;
+
+    await userModel.create({
+        fullName,
+        email,
+        password,
+    });
+    return res.redirect("/login");
 }
 
 module.exports = {
-    handleUserShignInPage,
-    handleUserShignUpPage,
+    handleUserLogInPage,
+    handleUserSignUpPage,
+    handleUserSignUp,
 }

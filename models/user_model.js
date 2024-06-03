@@ -1,4 +1,4 @@
-const { createHmac, randomBytes } = require("node: crypto");
+const { createHmac, randomBytes } = require("crypto");
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
@@ -20,7 +20,7 @@ const userSchema = new Schema({
         require: true
     },
     profileImageURL: {
-        type: string,
+        type: String,
         default: "/assets/images/defaultAvatar.png",
     },
     role: {

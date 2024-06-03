@@ -1,8 +1,10 @@
-const { handleUserShignInPage, handleUserShignUpPage } = require("./controllers/user_controller.js");
+const { handleUserLogInPage, handleUserSignUpPage, handleUserSignUp } = require("../controllers/user_controller.js");
 const { Router } = require("express");
 
-const router = Router();
+const userRouter = Router();
 
-router.get("/sightin", handleUserShignInPage);
-router.post("/sighin",)
-router.get("/sightup", handleUserShignUpPage);
+userRouter.get("/login", handleUserLogInPage);
+userRouter.post("/signun", handleUserSignUp);
+userRouter.get("/signup", handleUserSignUpPage);
+
+module.exports = userRouter;
