@@ -8,6 +8,13 @@ const handleUserSignUpPage = (req, res) => {
     return res.render("signup");
 }
 
+const handleUserLogIn = async (req, res) => {
+    const { email, password } = req.body;
+    const user = await userModel.matchPassword(email, password);
+    console.log(user);
+    res.redirect("/");
+}
+
 const handleUserSignUp = async (req, res) => {
     const { fullName, email, password } = req.body;
 
@@ -16,11 +23,12 @@ const handleUserSignUp = async (req, res) => {
         email,
         password,
     });
-    return res.redirect("/login");
+    return res.redirect("/user/login");
 }
 
 module.exports = {
     handleUserLogInPage,
     handleUserSignUpPage,
     handleUserSignUp,
+    handleUserLogIn,
 }

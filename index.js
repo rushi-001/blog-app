@@ -10,6 +10,9 @@ const PORT = 8008;
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
     res.render("home")
 })

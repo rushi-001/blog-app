@@ -25,12 +25,13 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ["USER, ADMIN"],
+        enum: ["USER", "ADMIN"],
         default: "USER",
     }
 
 }, { timestamps: true });
 
+// on save the password will be hashed
 userSchema.pre("save", function (next) {
 
     const user = this;
@@ -44,6 +45,17 @@ userSchema.pre("save", function (next) {
 
     next();
 
+})
+
+// making `function on schema` to `check the password` when user login
+userSchema.static('matchPassword', async function (email, password) {
+    const user = await this.findOne({ email });
+    if (!user) throw new Error("user not found!")
+    const salt = user.salt;
+    const hashedPassword = user.password;
+    const userProvidedHash = createHmac("sha256", salt).update(password).digest("hex");
+    if (hashedPassword !== userProvidedHash) throw new Error("the password is incorrect!");
+    return user;
 })
 
 const userModel = model("user", userSchema);
