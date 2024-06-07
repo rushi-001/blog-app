@@ -9,10 +9,15 @@ const handleUserSignUpPage = (req, res) => {
 }
 
 const handleUserLogIn = async (req, res) => {
-    const { email, password } = req.body;
-    const user = await userModel.matchPassword(email, password);
-    console.log(user);
-    res.redirect("/");
+    try {
+        const { email, password } = req.body;
+        const token = await userModel.matchPasswordCreateToken(email, password);
+        return res.cookie("User Token", token).redirect("/");
+    } catch (error) {
+        return res.render("login", {
+            error: "Incorrect Email or Password"
+        })
+    }
 }
 
 const handleUserSignUp = async (req, res) => {

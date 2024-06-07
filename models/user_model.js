@@ -1,5 +1,6 @@
 const { createHmac, randomBytes } = require("crypto");
 const { Schema, model } = require("mongoose");
+const { handleCreateTokenForUser } = require("../services/authentication");
 
 const userSchema = new Schema({
     fullName: {
@@ -48,14 +49,15 @@ userSchema.pre("save", function (next) {
 })
 
 // making `function on schema` to `check the password` when user login
-userSchema.static('matchPassword', async function (email, password) {
+userSchema.static('matchPasswordCreateToken', async function (email, password) {
     const user = await this.findOne({ email });
     if (!user) throw new Error("user not found!")
     const salt = user.salt;
     const hashedPassword = user.password;
     const userProvidedHash = createHmac("sha256", salt).update(password).digest("hex");
     if (hashedPassword !== userProvidedHash) throw new Error("the password is incorrect!");
-    return user;
+    const token = handleCreateTokenForUser(user);
+    return token;
 })
 
 const userModel = model("user", userSchema);
