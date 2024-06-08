@@ -1,32 +1,111 @@
 <header class="text-gray-400 bg-gray-900 body-font">
-    <div
-        class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
-    >
+    <div class="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a
             class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
         >
-            <img class="h-12 w-auto" src="assets/fav.svg" alt="logo" />
+            <img class="h-12 w-auto" src="/assets/fav.svg" alt="logo" />
             <span class="ml-3 text-xl">BlogBlitz</span>
         </a>
         <nav
             class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center"
         >
-            <a class="mr-5 hover:cursor-pointer hover:text-white">Home</a>
+            <a href="/" class="mr-5 hover:cursor-pointer hover:text-white"
+                >Home</a
+            >
+            <% if (locals.user) { %>
             <a class="mr-5 hover:cursor-pointer hover:text-white">Add Blog</a>
-            <!-- <a class="mr-5 hover:cursor-pointer hover:text-white">Third Link</a>
-            <a class="mr-5 hover:cursor-pointer hover:text-white"
-                >Fourth Link</a
-            > -->
+            <div class="relative inline-block text-left">
+                <div>
+                    <button
+                        type="button"
+                        class="inline-flex justify-center gap-x-1.5 mr-5 hover:cursor-pointer hover:text-white font-semibold shadow-sm"
+                        id="menu-button"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        onclick="toggleMenu()"
+                    >
+                        Options
+                        <svg
+                            class="-mr-1 mt-1 h-5 w-auto text-gray-400"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </button>
+                </div>
+                <div
+                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white hidden"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                    tabindex="-1"
+                    id="menu"
+                >
+                    <div class="py-1 shadow-md" role="none">
+                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                        <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-black"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-0"
+                            >Account settings</a
+                        >
+                        <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-black"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-1"
+                            >Support</a
+                        >
+                        <a
+                            href="#"
+                            class="block px-4 py-2 text-sm text-black"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-2"
+                            >License</a
+                        >
+                        <form method="POST" action="#" role="none">
+                            <button
+                                type="submit"
+                                class="block w-full px-4 py-2 text-left text-black"
+                                role="menuitem"
+                                tabindex="-1"
+                                id="menu-item-3"
+                            >
+                                Sign out
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
         </nav>
+        <% if (!locals.user) { %>
         <button
-            class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
+            class="inline-flex items-center border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
         >
-            Log In
+            <a href="/user/login">Log In</a>
         </button>
         <button
             class="inline-flex items-center bg-gray-800 border-0 ml-1 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
         >
-            Sign Up
+            <a href="/user/signup">Create Account</a>
         </button>
+        <% } else { %>
+
+        <h3 class="ml-3 text-xl text-gray-300 underline">
+            Hello, <%= locals.user.fullName %>
+        </h3>
+
+        <% } %>
     </div>
 </header>

@@ -17,4 +17,16 @@
         }
     }
 </style>
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("block");
+        const button = document.getElementById("menu-button");
+        button.setAttribute(
+            "aria-expanded",
+            !menu.classList.contains("hidden")
+        );
+    }
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>

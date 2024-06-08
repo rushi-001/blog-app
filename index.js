@@ -16,13 +16,14 @@ app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"));
 app.use(cookieParser());
-app.use(checkForAuthenticationCookie("token"));
+app.use(checkForAuthenticationCookie("UserToken"));
 
 app.get("/", (req, res) => {
     res.render("home", {
         user: req.user,
     });
 });
+
 app.use("/user", userRouter);
 
 app.listen(PORT, () => console.log(`server started at PORT: ${PORT}`));
