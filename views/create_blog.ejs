@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("./partials/head.ejs") %>
+        <title>BlogBlitz</title>
+    </head>
+    <body class="bg-gray-900">
+        <%- include("./partials/nav.ejs") %>
+        <div class="text-white">
+            <form
+                class="max-w-md mx-auto mt-8"
+                method="POST"
+                action="/blog/create-blog"
+            >
+                <div class="mb-4">
+                    <label
+                        for="title"
+                        class="block text-white text-sm font-bold mb-2"
+                        >Title</label
+                    >
+                    <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        placeholder="Enter the title"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                </div>
+                <div class="mb-6">
+                    <label
+                        for="body"
+                        class="block text-white text-sm font-bold mb-2"
+                        >Content</label
+                    >
+                    <textarea
+                        id="blogBody"
+                        name="body"
+                        placeholder="Enter the blog content"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-both"
+                    ></textarea>
+                </div>
+                <div class="mb-6">
+                    <label
+                        for="coverImage"
+                        class="block text-white text-sm font-bold mb-2"
+                        >Cover Image</label
+                    >
+                    <div class="relative">
+                        <input
+                            type="file"
+                            id="coverImage"
+                            name="coverImage"
+                            class="hidden"
+                            onchange="displayFileName()"
+                        />
+                        <label
+                            for="coverImage"
+                            class="cursor-pointer h-9 w-auto bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-flex items-center"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="2em"
+                                height="2em"
+                                viewBox="0 0 24 24"
+                                class="mr-2"
+                            >
+                                <g fill="none">
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="9"
+                                        fill="white"
+                                        fill-opacity="0.25"
+                                    />
+                                    <path
+                                        stroke="white"
+                                        stroke-linecap="square"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.2"
+                                        d="M12 8v8m4-4H8"
+                                    />
+                                </g>
+                            </svg>
+                            Add Cover Image
+                        </label>
+                        <span id="fileName" class="text-white mt-2"></span>
+                    </div>
+                </div>
+                <script>
+                    function displayFileName() {
+                        const input = document.getElementById("coverImage");
+                        const fileName = document.getElementById("fileName");
+                        fileName.textContent = input.files[0].name;
+                    }
+                </script>
+                <button
+                    type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
+        <%- include("./partials/scripts.ejs") %>
+    </body>
+</html>

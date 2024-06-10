@@ -1,7 +1,8 @@
-const path = require("path")
 const express = require("express");
-const userRouter = require("./routes/user_routes.js")
 const mongoose = require("mongoose");
+const userRouter = require("./routes/user_routes.js")
+const blogRouter = require("./routes/blog_routes.js");
+const path = require("path")
 const cookieParser = require("cookie-parser");
 const { checkForAuthenticationCookie } = require("./middlewares/authentication.js");
 require('dotenv').config();
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
+app.use("/blog", blogRouter);
 
 app.listen(PORT, () => console.log(`server started at PORT: ${PORT}`));
 mongoose.connect(process.env.mongoDb).then(e => console.log("MongoDB is connected"));

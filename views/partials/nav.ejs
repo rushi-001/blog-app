@@ -13,7 +13,11 @@
                 >Home</a
             >
             <% if (locals.user) { %>
-            <a class="mr-5 hover:cursor-pointer hover:text-white">Add Blog</a>
+            <a
+                href="/blog/create-blog"
+                class="mr-5 hover:cursor-pointer hover:text-white"
+                >Add Blog</a
+            >
             <div class="relative inline-block text-left">
                 <div>
                     <button
@@ -51,7 +55,7 @@
                         <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                         <a
                             href="#"
-                            class="block px-4 py-2 text-sm text-black"
+                            class="block px-4 py-2 text-sm font-semibold text-gray-800"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-0"
@@ -59,7 +63,7 @@
                         >
                         <a
                             href="#"
-                            class="block px-4 py-2 text-sm text-black"
+                            class="block px-4 py-2 text-sm font-semibold text-gray-800"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-1"
@@ -67,16 +71,16 @@
                         >
                         <a
                             href="#"
-                            class="block px-4 py-2 text-sm text-black"
+                            class="block px-4 py-2 text-sm font-semibold text-gray-800"
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-2"
                             >License</a
                         >
-                        <form method="POST" action="#" role="none">
+                        <form method="get" action="/user/logout" role="none">
                             <button
                                 type="submit"
-                                class="block w-full px-4 py-2 text-left text-black"
+                                class="block w-full px-4 py-2 text-left font-semibold text-gray-800"
                                 role="menuitem"
                                 tabindex="-1"
                                 id="menu-item-3"
