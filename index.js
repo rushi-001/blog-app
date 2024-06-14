@@ -5,6 +5,7 @@ const blogRouter = require("./routes/blog_routes.js");
 const path = require("path")
 const cookieParser = require("cookie-parser");
 const { checkForAuthenticationCookie } = require("./middlewares/authentication.js");
+const Blogs = require("./models/blog_model");
 require('dotenv').config();
 
 const app = express();
@@ -15,13 +16,17 @@ app.set("views", path.resolve("./views"));
 
 // middlewares
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static("public"));
+app.use(express.static(path.resolve("./public")));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("UserToken"));
 
-app.get("/", (req, res) => {
+
+app.get("/", async (req, res) => {
+    const allBlogs = await Blogs.find({}).sort({ createdAt: -1 });
     res.render("home", {
         user: req.user,
+        blogs: allBlogs
     });
 });
 
