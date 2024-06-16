@@ -20,7 +20,7 @@ app.use(express.static(path.resolve("./public")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("UserToken"));
-
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 app.get("/", async (req, res) => {
     const allBlogs = await Blogs.find({}).sort({ createdAt: -1 });
