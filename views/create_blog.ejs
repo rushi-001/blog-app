@@ -8,7 +8,7 @@
         <%- include("./partials/nav.ejs") %>
         <div class="text-white">
             <form
-                class="max-w-md mx-auto mt-8"
+                class="w-full max-w-5xl mx-auto mt-8"
                 method="POST"
                 action="/blog/create-blog"
                 enctype="multipart/form-data"
@@ -37,9 +37,22 @@
                         id="blogBody"
                         name="body"
                         placeholder="Enter the blog content"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-both"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline h-32 resize-both"
                     ></textarea>
                 </div>
+                <!-- <div class="mb-6">
+                    <label
+                        for="body"
+                        class="block text-white text-sm font-bold mb-2"
+                        >Content</label
+                    >
+                    <textarea
+                        id="blogBody"
+                        name="body"
+                        placeholder="Enter the blog content"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-both"
+                    ></textarea>
+                </div> -->
                 <div class="mb-6">
                     <label
                         for="coverImage"

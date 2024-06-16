@@ -36,8 +36,17 @@ const handleCreateBlogSubmition = async (req, res) => {
     return res.redirect(`/blog/${blog._id}`); // blog._id is comming from blog ( the _id will generate automatically by mongoDB ) 
 }
 
+const handleOpenBlogById = async (req, res) => {
+    const blog = await blogModel.findById(req.params.id);
+    return res.render("blog_user", {
+        user: req.user,
+        blog: blog
+    });
+}
+
 module.exports = {
     handleCreateBlog,
     handleCreateBlogSubmition,
     upload,
+    handleOpenBlogById,
 }
