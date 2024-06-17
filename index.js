@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
     const allBlogs = await Blogs.find({}).sort({ createdAt: -1 });
     res.render("home", {
         user: req.user,
-        blogs: allBlogs
+        blogs: allBlogs,
     });
 });
 

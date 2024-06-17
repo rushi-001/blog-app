@@ -37,7 +37,7 @@ const handleCreateBlogSubmition = async (req, res) => {
 }
 
 const handleOpenBlogById = async (req, res) => {
-    const blog = await blogModel.findById(req.params.id);
+    const blog = await blogModel.findById(req.params.id).populate("author");
     return res.render("blog_user", {
         user: req.user,
         blog: blog
