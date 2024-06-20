@@ -3,11 +3,11 @@ const { Schema, model } = require("mongoose");
 const blogSchema = new Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     body: {
         type: String,
-        require: true
+        required: true
     },
     coverImage: {
         type: String,
@@ -15,7 +15,7 @@ const blogSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: "user",
-        require: true
+        required: true
     },
 }, { timestamps: true });
 
