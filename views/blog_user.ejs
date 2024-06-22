@@ -8,21 +8,38 @@
         <%- include("./partials/nav.ejs") %>
 
         <div class="container mx-auto relative m-3 rounded-md">
-            <div class="overflow-hidden border border-gray-600 border-solid rounded-md h-96 w-full relative">
+            <div
+                class="overflow-hidden border border-gray-600 border-solid rounded-md h-96 w-full relative"
+            >
                 <img
                     src="<%= blog.coverImage %>"
                     alt="cover-image"
                     class="object-cover h-full w-full"
                 />
-                <div class="w-full absolute bottom-0 p-2 left-0 bg-gray-300 border border-gray-500 border-solid rounded-md bg-opacity-30 mx-auto flex items-center justify-center flex-wrap flex-col md:flex-row items-start">
-                    <div class="mr-auto md:mb-0 md:mr-4 flex flex-col items-center justify-center">
-                        <h1 class="text-black font-bold text-5xl"><%= blog.title %></h1>
-                        <h1 class="text-black text-xl"><i>By, <%= blog.author.fullName %></i></h1>
+                <div
+                    class="w-full absolute bottom-0 left-0 bg-gray-300 border border-gray-500 border-solid rounded-md bg-opacity-30 mx-auto flex items-center justify-center flex-wrap flex-col md:flex-rowi backdrop-blur-sm"
+                >
+                    <div
+                        class="mr-auto md:mb-0 md:mr-4 flex flex-col items-center justify-center"
+                    >
+                        <h1 class="text-black font-bold text-4xl">
+                            <%= blog.title %>
+                        </h1>
+                        <span class="flex items-center flex flex-row">
+                            <h1 class="text-black text-md m-1 font-semibold">
+                                <i>By, <%= blog.author.fullName %></i>
+                            </h1>
+                            <img
+                                src="<%= blog.author.profileImageURL %>"
+                                class="h-8 w-8 rounded-full m-1"
+                            />
+                        </span>
                     </div>
                 </div>
-                                
             </div>
-            <div class="prose prose-invert border border-gray-600 border-solid max-w-none text-white m-5 p-3 bg-gray-800 rounded-md">
+            <div
+                class="prose prose-invert border border-gray-600 border-solid max-w-none text-white m-5 p-3 bg-gray-800 rounded-md"
+            >
                 <%- blog.body %>
             </div>
         </div>
