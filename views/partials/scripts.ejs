@@ -72,6 +72,32 @@
 <script>
     document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelectorAll("pre").forEach((codeBlock) => {
+            // Create SVG elements for copy and copied icons
+            const copyIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            copyIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            copyIcon.setAttribute("width", "1em");
+            copyIcon.setAttribute("height", "1em");
+            copyIcon.setAttribute("viewBox", "0 0 24 24");
+            copyIcon.innerHTML = `
+                <path fill="white" d="M6.6 11.397c0-2.726 0-4.089.843-4.936c.844-.847 2.201-.847 4.917-.847h2.88c2.715 0 4.073 0 4.916.847c.844.847.844 2.21.844 4.936v4.82c0 2.726 0 4.089-.844 4.936c-.843.847-2.201.847-4.916.847h-2.88c-2.716 0-4.073 0-4.917-.847c-.843-.847-.843-2.21-.843-4.936z"/>
+                <path fill="white" d="M4.172 3.172C3 4.343 3 6.229 3 10v2c0 3.771 0 5.657 1.172 6.828c.617.618 1.433.91 2.62 1.048c-.192-.84-.192-1.996-.192-3.66v-4.819c0-2.726 0-4.089.843-4.936c.844-.847 2.201-.847 4.917-.847h2.88c1.652 0 2.8 0 3.638.19c-.138-1.193-.43-2.012-1.05-2.632C16.657 2 14.771 2 11 2C7.229 2 5.343 2 4.172 3.172" opacity="0.5"/>
+            `;
+
+            const copiedIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            copiedIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            copiedIcon.setAttribute("width", "1em");
+            copiedIcon.setAttribute("height", "1em");
+            copiedIcon.setAttribute("viewBox", "0 0 24 24");
+            copiedIcon.innerHTML = `
+                <path fill="white" d="m6.7 18l-5.65-5.65l1.425-1.4l4.25 4.25l1.4 1.4zm5.65 0L6.7 12.35l1.4-1.425l4.25 4.25l9.2-9.2l1.4 1.425zm0-5.65l-1.425-1.4L15.875 6L17.3 7.4z"/>
+            `;
+
             // Wrap the code block in a relative div
             const wrapperDiv = document.createElement("div");
             wrapperDiv.className = "relative";
@@ -84,7 +110,7 @@
 
             // Create the copy button
             const copyButton = document.createElement("button");
-            copyButton.innerText = "Copy";
+            copyButton.appendChild(copyIcon); // Append the SVG icon
             copyButton.className =
                 "absolute top-2 right-2 bg-gray-800 text-white border border-gray-600 px-3 py-1 rounded cursor-pointer";
 
@@ -100,10 +126,14 @@
                 document.execCommand("copy");
                 document.body.removeChild(tempTextarea);
 
-                // Notify the user
-                copyButton.innerText = "Copied!";
+                // Change icon to "copied" icon temporarily
+                copyButton.innerHTML = ""; // Clear existing content
+                copyButton.appendChild(copiedIcon); // Append the "copied" SVG icon
+
+                // Change back to "copy" icon after 2 seconds
                 setTimeout(() => {
-                    copyButton.innerText = "Copy";
+                    copyButton.innerHTML = ""; // Clear existing content
+                    copyButton.appendChild(copyIcon); // Append the "copy" SVG icon
                 }, 2000);
             });
         });
