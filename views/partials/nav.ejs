@@ -18,6 +18,9 @@
                 class="mr-5 hover:cursor-pointer hover:text-white"
                 >Add Blog</a
             >
+            <a href="#" class="mr-5 hover:cursor-pointer hover:text-white"
+                >My Blogs</a
+            >
             <div class="relative inline-block text-left">
                 <div>
                     <button
@@ -109,8 +112,58 @@
         <h3 class="ml-3 text-xl text-gray-300 underline">
             Hello, <%= locals.user.fullName %>
         </h3>
-        <img class="ml-3 h-12 w-auto rounded-full" src="<%= user.profileImageURL %>">
+        <img
+            class="ml-3 h-12 w-auto rounded-full"
+            src="<%= user.profileImageURL %>"
+        />
 
         <% } %>
+        <!-- Sidebar for mobile view 
+        <div
+            class="fixed top-0 left-0 flex flex-col h-screen p-3 bg-gray-800 text-white w-40"
+        >
+            <div class="space-y-3">
+                <div class="flex items-center">
+                    <h2 class="text-xl font-bold">My Sidebar</h2>
+                </div>
+                <div class="flex-1">
+                    <ul class="pt-2 pb-4 space-y-1 text-sm">
+                        <li class="rounded-sm">
+                            <a
+                                href="#"
+                                class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700"
+                            >
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="rounded-sm">
+                            <a
+                                href="#"
+                                class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700"
+                            >
+                                <span>About</span>
+                            </a>
+                        </li>
+                        <li class="rounded-sm">
+                            <a
+                                href="#"
+                                class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700"
+                            >
+                                <span>Services</span>
+                            </a>
+                        </li>
+                        <li class="rounded-sm">
+                            <a
+                                href="#"
+                                class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700"
+                            >
+                                <span>Contact</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        -->
     </div>
 </header>

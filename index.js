@@ -30,10 +30,9 @@ app.get("/", async (req, res) => {
     });
 });
 
+// Routers
 app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 
 app.listen(PORT, () => console.log(`server started at PORT: ${PORT}`));
 mongoose.connect(process.env.mongoDb).then(e => console.log("MongoDB is connected"));
-
-// exam
