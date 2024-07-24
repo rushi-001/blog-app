@@ -9,3 +9,8 @@
 ~> multer storage
 
 ~> adding multiple blog in app
+
+~> added footer
+    > commplete comment,
+    > add my blogs,
+    > add loader,
